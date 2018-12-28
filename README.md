@@ -49,8 +49,9 @@ When the reader has completed this pattern, they will understand how to create, 
 * [Docker](https://www.docker.com/get-docker) - v1.13 or higher
 * [Docker Compose](https://docs.docker.com/compose/overview/) - v1.8 or higher
 * [Git Client](https://git-scm.com/downloads) - needed for clone commands
-* [Maven](http://maven.apache.org/download.cgi) - needed to build the client. Maven is a build automation tool used primarily for Java projects. Maven addresses two aspects of building software: first, it describes how software is built, and second, it describes its dependencies.
-
+* Intellij IDEA >= 2018.1 - Intellij will include Maven which needed to build the client. Maven is a build automation tool used primarily for Java projects. Maven addresses two aspects of building software: first, it describes how software is built, and second, it describes its dependencies.
+   * Create build configuration like image below <br> ![](Screenshot/build1.png)
+ 
 ## Steps
 
 Follow these steps to setup and run this code pattern. 

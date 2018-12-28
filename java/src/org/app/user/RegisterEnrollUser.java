@@ -26,6 +26,22 @@ public class RegisterEnrollUser {
 
 	public static void main(String args[]) {
 		try {
+			String caUrl = Config.CA_ORG2_URL;
+			CAClient caClient = new CAClient(caUrl, null);
+			// Enroll Admin to Org2MSP
+			UserContext adminUserContext = new UserContext();
+			adminUserContext.setName(Config.ADMIN);
+			adminUserContext.setAffiliation(Config.ORG2);
+			adminUserContext.setMspId(Config.ORG2_MSP);
+			caClient.setAdminUserContext(adminUserContext);
+			adminUserContext = caClient.enrollAdminUser(Config.ADMIN, Config.ADMIN_PASSWORD);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main_org(String args[]) {
+		try {
 			Util.cleanUp();
 			String caUrl = Config.CA_ORG1_URL;
 			CAClient caClient = new CAClient(caUrl, null);
