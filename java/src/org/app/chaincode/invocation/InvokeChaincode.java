@@ -41,15 +41,15 @@ public class InvokeChaincode {
 	private static final String EXPECTED_EVENT_NAME = "event";
 
 	public static void main(String args[]) {
-//		create_car_on_org1(1, "Piyapan");
-//		create_car_on_org1(2, "ddd");
-//		create_car_on_org1(10, "1");
+		create_car_on_org1(1, "Piyapan");
+		create_car_on_org1(2, "ddd");
+		create_car_on_org1(10, "1");
 
 //		create_car_on_org2(6, "Ed Sheeran");
 //		create_car_on_org2(7, "Edda");
 //		create_car_on_org2(8, "Rose");
-//		try {Thread.sleep(5000);} catch (Exception ignored) {}
-		query_car_on_org2();
+		try {Thread.sleep(5000);} catch (Exception ignored) {}
+		query_car_on_org1();
 	}
 
 	public static void create_car_on_org1(int carID, String owner) {
@@ -71,7 +71,7 @@ public class InvokeChaincode {
 			Channel channel = channelClient.getChannel();
 			Peer peer = fabClient.getInstance().newPeer(Config.ORG1_PEER_0, Config.ORG1_PEER_0_URL);
 			EventHub eventHub = fabClient.getInstance().newEventHub("eventhub01", "grpc://localhost:7053");
-			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL);
+			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL, Config.getOrderProperties());
 			channel.addPeer(peer);
 			channel.addEventHub(eventHub);
 			channel.addOrderer(orderer);
@@ -121,7 +121,7 @@ public class InvokeChaincode {
 			Channel channel = channelClient.getChannel();
 			Peer peer = fabClient.getInstance().newPeer(Config.ORG2_PEER_1, Config.ORG2_PEER_1_URL);
 			EventHub eventHub = fabClient.getInstance().newEventHub("eventhub01", "grpc://localhost:8058");
-			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL);
+			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL, Config.getOrderProperties());
 			channel.addPeer(peer);
 			channel.addEventHub(eventHub);
 			channel.addOrderer(orderer);
@@ -172,7 +172,7 @@ public class InvokeChaincode {
 			Channel channel = channelClient.getChannel();
 			Peer peer = fabClient.getInstance().newPeer(Config.ORG1_PEER_0, Config.ORG1_PEER_0_URL);
 			EventHub eventHub = fabClient.getInstance().newEventHub("eventhub01", "grpc://localhost:7053");
-			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL);
+			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL, Config.getOrderProperties());
 			channel.addPeer(peer);
 			channel.addEventHub(eventHub);
 			channel.addOrderer(orderer);
@@ -209,7 +209,7 @@ public class InvokeChaincode {
 			Channel channel = channelClient.getChannel();
 			Peer peer = fabClient.getInstance().newPeer(Config.ORG2_PEER_1, Config.ORG2_PEER_1_URL);
 			EventHub eventHub = fabClient.getInstance().newEventHub("eventhub01", "grpc://localhost:8058");
-			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL);
+			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL, Config.getOrderProperties());
 			channel.addPeer(peer);
 			channel.addEventHub(eventHub);
 			channel.addOrderer(orderer);

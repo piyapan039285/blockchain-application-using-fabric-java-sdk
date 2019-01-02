@@ -38,7 +38,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class DeployInstantiateChaincode {
 
 	public static void main(String args[]) {
-		deploy_on_org2();
+		deploy_on_org1();
 	}
 
 	public static void deploy_on_org2() {
@@ -76,7 +76,7 @@ public class DeployInstantiateChaincode {
 			}
 
 			ChannelClient channelClient = fabClient.createChannelClient(Config.CHANNEL_NAME);
-			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL);
+			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL, Config.getOrderProperties());
 			Channel mychannel = channelClient.getChannel();
 			mychannel.addOrderer(orderer);
 			mychannel.addPeer(peer0_org2);
@@ -117,7 +117,7 @@ public class DeployInstantiateChaincode {
 			FabricClient fabClient = new FabricClient(org1Admin);
 
 			Channel mychannel = fabClient.getInstance().newChannel(Config.CHANNEL_NAME);
-			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL);
+			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL, Config.getOrderProperties());
 			Peer peer0_org1 = fabClient.getInstance().newPeer(Config.ORG1_PEER_0, Config.ORG1_PEER_0_URL);
 			Peer peer1_org1 = fabClient.getInstance().newPeer(Config.ORG1_PEER_1, Config.ORG1_PEER_1_URL);
 			mychannel.addOrderer(orderer);
@@ -185,7 +185,7 @@ public class DeployInstantiateChaincode {
 			FabricClient fabClient = new FabricClient(org1Admin);
 
 			Channel mychannel = fabClient.getInstance().newChannel(Config.CHANNEL_NAME);
-			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL);
+			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL, Config.getOrderProperties());
 			Peer peer0_org1 = fabClient.getInstance().newPeer(Config.ORG1_PEER_0, Config.ORG1_PEER_0_URL);
 			Peer peer1_org1 = fabClient.getInstance().newPeer(Config.ORG1_PEER_1, Config.ORG1_PEER_1_URL);
 			Peer peer0_org2 = fabClient.getInstance().newPeer(Config.ORG2_PEER_0, Config.ORG2_PEER_0_URL);

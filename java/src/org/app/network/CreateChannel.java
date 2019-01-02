@@ -15,6 +15,7 @@ package org.app.network;
 import java.io.File;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,7 +40,7 @@ import org.hyperledger.fabric.sdk.security.CryptoSuite;
 public class CreateChannel {
 
 	public static void main(String args[]) {
-		create_org2();
+		create_org1();
 	}
 
 	public static void create_org1() {
@@ -61,7 +62,7 @@ public class CreateChannel {
 			FabricClient fabClient = new FabricClient(org1Admin);
 
 			// Create a new channel
-			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL);
+			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL, Config.getOrderProperties());
 			ChannelConfiguration channelConfiguration = new ChannelConfiguration(new File(Config.CHANNEL_CONFIG_PATH));
 
 			byte[] channelConfigurationSignatures = fabClient.getInstance()
@@ -117,7 +118,7 @@ public class CreateChannel {
 			Peer peer0_org2 = fabClient.getInstance().newPeer(Config.ORG2_PEER_0, Config.ORG2_PEER_0_URL);
 			Peer peer1_org2 = fabClient.getInstance().newPeer(Config.ORG2_PEER_1, Config.ORG2_PEER_1_URL);
 
-			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL);
+			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL, Config.getOrderProperties());
 			mychannel.addOrderer(orderer);
 			mychannel.joinPeer(peer0_org2);
 			mychannel.joinPeer(peer1_org2);
@@ -157,7 +158,7 @@ public class CreateChannel {
 			ChannelClient channelClient = fabClient.createChannelClient(Config.CHANNEL_NAME);
 			Channel mychannel = channelClient.getChannel();
 
-			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL);
+			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL, Config.getOrderProperties());
 			mychannel.addOrderer(orderer);
 
 			UserContext org2Admin = new UserContext();
@@ -223,7 +224,7 @@ public class CreateChannel {
 			FabricClient fabClient = new FabricClient(org1Admin);
 
 			// Create a new channel
-			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL);
+			Orderer orderer = fabClient.getInstance().newOrderer(Config.ORDERER_NAME, Config.ORDERER_URL, Config.getOrderProperties());
 			ChannelConfiguration channelConfiguration = new ChannelConfiguration(new File(Config.CHANNEL_CONFIG_PATH));
 
 			byte[] channelConfigurationSignatures = fabClient.getInstance()

@@ -1,6 +1,7 @@
 package org.app.config;
 
 import java.io.File;
+import java.util.Properties;
 
 public class Config {
 	
@@ -39,7 +40,13 @@ public class Config {
 	public static final String ORDERER_URL = "grpc://localhost:7050";
 	
 	public static final String ORDERER_NAME = "orderer.example.com";
-	
+
+	public static Properties getOrderProperties() {
+		Properties prop = new Properties();
+		prop.setProperty("ordererWaitTimeMilliSecs", "10000");
+		return prop;
+	}
+
 	public static final String CHANNEL_NAME = "mychannel";
 	
 	public static final String ORG1_PEER_0 = "peer0.org1.example.com";
