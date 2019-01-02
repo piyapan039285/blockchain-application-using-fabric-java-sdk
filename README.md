@@ -32,8 +32,8 @@
     INFO: peer1.org2.example.com at grpc://localhost:8056
     ```  
 
-  1. run class `DeployInstantiateChaincode` to init blockchain.
-  1. run class `InvokeChaincode` to insert data into blockchain. If successful, it will print out data in blockchain like this
+ 1. run class `DeployInstantiateChaincode` to init blockchain.
+ 1. run class `InvokeChaincode` to insert data into blockchain. If successful, it will print out data in blockchain like this
      ```
      INFO: Deleting - users
      Jan 02, 2019 2:46:30 PM org.app.client.CAClient enrollAdminUser
@@ -58,13 +58,25 @@
 
 **Note**: right now I separate organization2 peers into file `docker-compose-org2.yml` for testing.
 
+
+# Query blockchain using command line
+```bash
+docker exec -it peer0.org1.example.com bash
+# call command 'queryAllCars'
+peer chaincode query -o 127.0.0.1:7050 -n fabcar -C mychannel -c '{"Args":["queryAllCars"]}'
+```
+More info
+ * https://jira.hyperledger.org/browse/FAB-2957
+ * https://stackoverflow.com/questions/47330576/how-to-upgrade-a-chaincode-after-modification
+
 <br/>
 <br/>
 <br/>
 <br/>
 <br/>
 <br/>
-<br/>
+
+
 # (Old) README
 
 Blockchain is a shared, immutable ledger for recording the history of transactions. The Linux Foundation’s Hyperledger Fabric, the software implementation of blockchain IBM is committed to, is a permissioned network. Hyperledger Fabric is a platform for distributed ledger solutions underpinned by a modular architecture delivering high degrees of confidentiality, resiliency, flexibility and scalability. 

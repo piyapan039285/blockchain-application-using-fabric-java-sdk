@@ -156,6 +156,14 @@ public class DeployInstantiateChaincode {
 		}
 	}
 
+	public static void upgrade_on_org1() {
+		try {
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public static void deploy_on_both() {
 		try {
 			CryptoSuite cryptoSuite = CryptoSuite.Factory.getCryptoSuite();
