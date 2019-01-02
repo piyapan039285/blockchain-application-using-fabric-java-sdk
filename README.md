@@ -1,4 +1,71 @@
-# Create and Deploy a Blockchain Network using Hyperledger Fabric SDK Java
+# Requirements
+ * Java 8
+ * Docker >= 18.09
+ * Docker Compose >= 1.23
+ * Intellij IDEA >= 2018.1
+
+# Setup Project
+ 1. Open folder `<root>/java` in IntelliJ IDEA.
+ 1. On Maven tab, click sync button to install dependencies <br> ![](Screenshot/build2.png)
+ 1. Create build configuration like image below <br> ![](Screenshot/build1.png)
+
+# Run Project
+ 1. Setup the Blockchain Network
+    ```
+    cd <root>/network
+    bash build.sh
+    ```
+
+ 1. Then, run class `CreateChannel`. If successful, you will see output like this
+    ```
+    Apr 20, 2018 5:11:42 PM org.app.util.Util deleteDirectory
+    INFO: Deleting - users
+    Apr 20, 2018 5:11:45 PM org.app.network.CreateChannel main
+    INFO: Channel created mychannel
+    Apr 20, 2018 5:11:45 PM org.app.network.CreateChannel main
+    INFO: peer0.org1.example.com at grpc://localhost:7051
+    Apr 20, 2018 5:11:45 PM org.app.network.CreateChannel main
+    INFO: peer1.org1.example.com at grpc://localhost:7056
+    Apr 20, 2018 5:11:45 PM org.app.network.CreateChannel main
+    INFO: peer0.org2.example.com at grpc://localhost:8051
+    Apr 20, 2018 5:11:45 PM org.app.network.CreateChannel main
+    INFO: peer1.org2.example.com at grpc://localhost:8056
+    ```  
+
+  1. run class `DeployInstantiateChaincode` to init blockchain.
+  1. run class `InvokeChaincode` to insert data into blockchain. If successful, it will print out data in blockchain like this
+     ```
+     INFO: Deleting - users
+     Jan 02, 2019 2:46:30 PM org.app.client.CAClient enrollAdminUser
+     INFO: CA -http://localhost:7054 Enrolled Admin.
+     Jan 02, 2019 2:46:30 PM org.app.client.ChannelClient sendTransactionProposal
+     INFO: Sending transaction proposal on channel mychannel
+     Jan 02, 2019 2:46:30 PM org.app.client.ChannelClient sendTransactionProposal
+     INFO: Transaction proposal on channel mychannel OK SUCCESS with transaction id:36b6c33e607292c799fb53d0cf3f7d45214372a649dd4c2e191273e1bef74c5c
+     Jan 02, 2019 2:46:30 PM org.app.client.ChannelClient sendTransactionProposal
+     INFO: 
+     Jan 02, 2019 2:46:30 PM org.app.client.ChannelClient sendTransactionProposal
+     INFO: java.util.concurrent.CompletableFuture@5b444398[Not completed]
+     Jan 02, 2019 2:46:30 PM org.app.chaincode.invocation.InvokeChaincode create_car_on_org1
+     INFO: Invoked createCar on fabcar. Status - SUCCESS
+     Jan 02, 2019 2:46:35 PM org.app.chaincode.invocation.InvokeChaincode query_car_on_org1
+     INFO: Querying for all cars ...
+     Jan 02, 2019 2:46:35 PM org.app.client.ChannelClient queryByChainCode
+     INFO: Querying queryAllCars on channel mychannel
+     Jan 02, 2019 2:46:35 PM org.app.chaincode.invocation.InvokeChaincode query_car_on_org1
+     INFO: [{"Key":"CAR1", "Record":{"make":"Chevy","model":"Volt","colour":"Red","owner":"Piyapan"}},{"Key":"CAR10", "Record":{"make":"Chevy","model":"Volt","colour":"Red","owner":"1"}},{"Key":"CAR2", "Record":{"make":"Chevy","model":"Volt","colour":"Red","owner":"ddd"}}]
+     ```
+
+**Note**: right now I separate organization2 peers into file `docker-compose-org2.yml` for testing.
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+# (Old) README
 
 Blockchain is a shared, immutable ledger for recording the history of transactions. The Linux Foundation’s Hyperledger Fabric, the software implementation of blockchain IBM is committed to, is a permissioned network. Hyperledger Fabric is a platform for distributed ledger solutions underpinned by a modular architecture delivering high degrees of confidentiality, resiliency, flexibility and scalability. 
 
@@ -49,8 +116,7 @@ When the reader has completed this pattern, they will understand how to create, 
 * [Docker](https://www.docker.com/get-docker) - v1.13 or higher
 * [Docker Compose](https://docs.docker.com/compose/overview/) - v1.8 or higher
 * [Git Client](https://git-scm.com/downloads) - needed for clone commands
-* Intellij IDEA >= 2018.1 - Intellij will include Maven which needed to build the client. Maven is a build automation tool used primarily for Java projects. Maven addresses two aspects of building software: first, it describes how software is built, and second, it describes its dependencies.
-   * Create build configuration like image below <br> ![](Screenshot/build1.png)
+* [Maven](http://maven.apache.org/download.cgi) - needed to build the client. Maven is a build automation tool used primarily for Java projects. Maven addresses two aspects of building software: first, it describes how software is built, and second, it describes its dependencies.
  
 ## Steps
 
